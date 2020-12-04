@@ -1,15 +1,10 @@
+import Data.List.Split
+
 main :: IO ()
 main = do
     input <- readFile "input"
-    let wd = [ x | x <- lines input]
-    putStrLn $ show $ concatRows wd
+    let wd = [ (splitOn "\n" x) | x <- (splitOn "\n\n" input)]
+    putStrLn $ show $ wd 
 
-concatRows :: [String] -> [String]
-concatRows []                 = []
-concatRows (l:ls) | l == []   = "" ++ (concatRows ls)
-                  | otherwise = l ++ (concatRows ls)
 
-checkOcc :: [String] -> Bool
-checkOcc []     = True
-checkOcc (l:ls) | l == "" = checkOcc ls
 
