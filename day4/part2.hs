@@ -25,18 +25,18 @@ validPass []     = True
 validPass (s:ss) = validPair s && validPass ss
 
 validPair :: (String, String) -> Bool
-validPair ("byr", yr) = length yr == 4 && ryr >= 1920 && ryr <= 2002
-    where ryr = read yr
+validPair ("byr", y) = length y == 4 && ryr >= 1920 && ryr <= 2002
+    where ryr = read y
 
-validPair ("iyr", isy) = length isy == 4 && risy >= 2010 && risy <= 2020
-    where risy = read isy
+validPair ("iyr", y) = length y == 4 && risy >= 2010 && risy <= 2020
+    where risy = read y
 
-validPair ("eyr", ex) = length ex == 4 && rex >= 2020 && rex <= 2030
-    where rex = read ex
+validPair ("eyr", y) = length y == 4 && rex >= 2020 && rex <= 2030
+    where rex = read y
 
-validPair ("hgt", hg) = (afx == "in" && lng >= 59 && lng <= 76) || (afx == "cm" && lng >= 150 && lng <= 193)
-    where afx = reverse $ take 2 $ reverse hg
-          lng = read $ reverse $ drop 2 $ reverse hg
+validPair ("hgt", y) = (inchorcm == "in" && yrr >= 59 && yrr <= 76) || (inchorcm == "cm" && yrr >= 150 && yrr <= 193)
+    where inchorcm = reverse $ take 2 $ reverse y
+          yrr = read $ reverse $ drop 2 $ reverse y
 
 validPair ("hcl", hc) = head hc == '#' && length hc == 7 && (and [isLetterAf c | c <- drop 2 hc])
     where isLetterAf c = c `elem` ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
