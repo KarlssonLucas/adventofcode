@@ -5,7 +5,7 @@ main = do
     s <- readFile "input"
     let parsedList = [(splitOn " " x !! 0, splitOn " " x !! 1) | x <- lines s]
     let ppl = [(x, p) | (x,y) <- parsedList, let p | head y == '-' = -1 * read (tail y) :: Int
-                                                  | otherwise     =  1 * read (tail y) :: Int]
+                                                   | otherwise     =  1 * read (tail y) :: Int]
     print $ [findLoop (replaceElem ppl random "nop") [] [] 0 0 | random <- [0..600], (fst (ppl !! random)) == "jmp"]
 
 
