@@ -1,7 +1,5 @@
 import Data.Char(digitToInt)
 
-b = ["11110", "10110", "10111", "10101", "11100", "10000", "11001"]
-
 main = do
     filecontent <- readFile "input"
     let a = [x | x <- words filecontent]
