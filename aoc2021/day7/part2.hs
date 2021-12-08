@@ -2,7 +2,7 @@ import Data.List.Split
 import Data.List
 
 main = do
-    filecontent <- readFile "input"
+    filecontent <- readFile "test"
     let a = (Prelude.map (read :: String -> Int) (splitOn "," filecontent))
     print $ sum [distanceTo (minimum [average a - 1, average a + 1]) x | x <- a ] 
         where average a = (sum a) `div` (length a)
