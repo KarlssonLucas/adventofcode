@@ -50,13 +50,3 @@ func (n:ns) list
           four = list !! 2
           eight = list !! 3
 
-
-
-
-
--- 3 = 3 \ 1 && length == 5 = length 2
--- 5 = (5 \ 4) && length == 5 = length 3
--- 2 = (4 \ 2) && length == 5 = length 2
---
--- 9 = (9 \ 7) && length == 6 = length 3
--- 6 = (9\7) && length == 6 = length 2
