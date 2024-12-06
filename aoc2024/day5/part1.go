@@ -2,10 +2,10 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"slices"
 	"strconv"
 	"strings"
+  "sort"
 )
 
 func toIntList(ss []string) []int {
@@ -18,17 +18,13 @@ func toIntList(ss []string) []int {
 }
 
 func applyRule(rule []int, S []int) []int {
-	for i := len(S); i > 0; i-- {
-		for j := 1; j < i; j++ {
-			if S[j-1] == rule[1] && S[j] == rule[0] {
-				intermediate := S[j]
-				S[j] = S[j-1]
-				S[j-1] = intermediate
-			}
-		}
-	}
-
-	return S
+  sort.SliceStable(S, func(i, j int) bool {
+    if rule[0] == S[i] && rule[1] == S[j] {
+      return i > j
+    }
+    return false
+  })
+  return S
 }
 
 func part1(scanner *bufio.Scanner) int {
@@ -55,7 +51,6 @@ func part1(scanner *bufio.Scanner) int {
 				unsorted = applyRule(rule, unsorted)
 			}
 
-			fmt.Println(unsorted, orig)
 			if slices.Equal(orig, unsorted) {
 				elem := orig[len(orig)/2]
 				result = append(result, elem)

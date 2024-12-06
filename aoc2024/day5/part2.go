@@ -2,7 +2,6 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"slices"
 	"strconv"
 	"strings"
@@ -32,7 +31,6 @@ func part2(scanner *bufio.Scanner) int {
 				unsorted = applyRule(rule, unsorted)
 			}
 
-			fmt.Println(unsorted, orig)
 			if !slices.Equal(orig, unsorted) {
 				elem := unsorted[len(unsorted)/2]
 				result = append(result, elem)
