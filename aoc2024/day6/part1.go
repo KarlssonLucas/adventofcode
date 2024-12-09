@@ -73,10 +73,14 @@ func NewPosAndDir(posy int, posx int, dir Dir, mapped [][]string) (int, int, Dir
 func traverseMap(mapped [][]string) (int, error) {
 	visited := 0
 
-	posy, posx, dir := getStartPosAndDir(mapped)
+	startposy, startposx, startdir := getStartPosAndDir(mapped)
+
+	posx := startposx
+	posy := startposy
+	dir := startdir
 
 	n := 0
-	for n < 6000 {
+	for n < 100000 {
 		if mapped[posy][posx] != "X" {
 			visited += 1
 			mapped[posy][posx] = "X"
@@ -86,6 +90,7 @@ func traverseMap(mapped [][]string) (int, error) {
 		if err != nil {
 			return visited, nil
 		}
+
 		posy = newposy
 		posx = newposx
 		dir = newdir
